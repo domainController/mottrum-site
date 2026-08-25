@@ -10,7 +10,8 @@
    Calé sur AUDITUM MEMORIA — SHARED STYLESHEET v2.1.0 (2026-07-08)
    Règles reprises verbatim depuis style.css du groupe pour les
    éléments utilisés ici (reset, body, .container, .meta-bar, h1,
-   .subtitle, .branch / .status-tag — "utilisée par index.html").
+   .subtitle, .children / .child / .child-desc / .status-tag —
+   structure réellement utilisée par le index.html d'Auditum Memoria).
    ============================================================ */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -65,24 +66,29 @@ h1 {
 
 /* ---- Structure arborescente (utilisée par index.html) ---- */
 
-.branch {
-  margin-bottom: 8px;
-  padding: 14px 0;
-  border-bottom: 1px solid #161a33;
-}
-.branch:last-child { border-bottom: none; }
-
-.branch-title {
-  color: #fff;
-  font-size: 1.05em;
-  font-weight: 600;
-  margin-bottom: 4px;
+.children {
+  margin-left: 20px;
+  padding-left: 16px;
+  border-left: 1px solid #232849;
 }
 
-.branch-desc {
-  color: #8a90a8;
-  font-size: 0.88em;
-  margin-bottom: 10px;
+.child {
+  padding: 6px 0;
+  font-size: 0.92em;
+}
+
+.child-title {
+  color: #b8bcd8;
+}
+
+.child-desc {
+  color: #5a6080;
+  font-size: 0.85em;
+  margin-top: 3px;
+}
+
+.child-desc .fn {
+  font-style: italic;
 }
 
 .status-tag {
@@ -98,9 +104,12 @@ h1 {
 .status-planned { background: #241832; color: #a888d0; }
 .status-ready { background: #0d2b33; color: #4ac8e0; }
 
-.branch-desc .fn {
-  color: #5a6080;
-  font-style: italic;
+/* ---- Proof Mark⧉ — remplace ™/©/® (doctrine Post-TM, v1.1) ----
+   0.6em, superscript, graisse régulière — jamais bold. */
+.proof-mark {
+  font-size: 0.6em;
+  font-weight: 400;
+  vertical-align: super;
 }
 
 footer {
@@ -117,31 +126,33 @@ footer {
   <div class="container">
     <div class="meta-bar">
       <div class="meta-left">
-        <span class="category">Site Index</span><span class="sep">·</span>Version 0.4.0 — draft<span class="sep">·</span>Updated August 26, 2026
+        <span class="category">Site Index</span><span class="sep">·</span>Version 0.5.0 — draft<span class="sep">·</span>Updated August 26, 2026
       </div>
     </div>
 
     <h1>Möttrum</h1>
     <p class="subtitle">Marketplace for pre-litigation assets.</p>
 
-    <div class="branch">
-      <div class="branch-title">Proof Engine™ <span class="status-tag status-draft">draft</span></div>
-      <div class="branch-desc">Proof Engine notarizes the evidence. <span class="fn">function: transformation / notarization</span></div>
-    </div>
+    <div class="children">
+      <div class="child">
+        <span class="child-title">Proof Engine™</span> <span class="status-tag status-draft">draft</span>
+        <div class="child-desc">Proof Engine notarizes the evidence. <span class="fn">function: transformation / notarization</span></div>
+      </div>
 
-    <div class="branch">
-      <div class="branch-title">Spectrum Vault™ <span class="status-tag status-draft">draft</span></div>
-      <div class="branch-desc">Spectrum Vault freezes the asset. <span class="fn">function: storage / custodian</span></div>
-    </div>
+      <div class="child">
+        <span class="child-title">Truth Assets Vault<span class="proof-mark">⧉</span></span> <span class="status-tag status-draft">draft</span>
+        <div class="child-desc">Truth Assets Vault freezes the asset. <span class="fn">function: storage / custodian</span></div>
+      </div>
 
-    <div class="branch">
-      <div class="branch-title">Instrument Forge™ <span class="status-tag status-draft">draft</span></div>
-      <div class="branch-desc">Instrument Forge designs legal instruments. <span class="fn">function: instruments — creation &amp; exploitation</span></div>
-    </div>
+      <div class="child">
+        <span class="child-title">Instrument Forge™</span> <span class="status-tag status-draft">draft</span>
+        <div class="child-desc">Instrument Forge designs legal instruments. <span class="fn">function: instruments — creation &amp; exploitation</span></div>
+      </div>
 
-    <div class="branch">
-      <div class="branch-title">Truth Finance Exchange™ <span class="status-tag status-draft">draft</span></div>
-      <div class="branch-desc">Truth Finance Exchange trades pre-litigation assets. <span class="fn">function: exchange</span></div>
+      <div class="child">
+        <span class="child-title">Truth Finance Exchange™</span> <span class="status-tag status-draft">draft</span>
+        <div class="child-desc">Truth Finance Exchange trades pre-litigation assets. <span class="fn">function: exchange</span></div>
+      </div>
     </div>
 
     <footer>
