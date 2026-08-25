@@ -4,107 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Möttrum</title>
+<link rel="stylesheet" href="css/style.css">
 <style>
 /* ============================================================
-   Möttrum — homepage stylesheet
-   Calé sur AUDITUM MEMORIA — SHARED STYLESHEET v2.1.0 (2026-07-08)
-   Règles reprises verbatim depuis style.css du groupe pour les
-   éléments utilisés ici (reset, body, .container, .meta-bar, h1,
-   .subtitle, .children / .child / .child-desc / .status-tag —
-   structure réellement utilisée par le index.html d'Auditum Memoria).
+   Möttrum — additions locales, absentes du shared stylesheet.
+   Le reste (reset, body, .container, .meta-bar, h1, .subtitle,
+   .children / .child / .child-desc / .status-tag, footer via
+   font/couleurs héritées) vient de css/style.css — AUDITUM
+   MEMORIA — SHARED STYLESHEET v2.1.0, copié verbatim dans ce repo.
    ============================================================ */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  background: #0a0e27;
-  color: #e0e0e0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.7;
-}
-
-.container {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 60px 24px;
-}
-
-.meta-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px 16px;
-  font-size: 0.82em;
-  color: #7a8296;
-  border-bottom: 1px solid #1e2340;
-  padding-bottom: 18px;
-  margin-bottom: 40px;
-  font-family: 'SF Mono', Consolas, monospace;
-}
-.meta-bar .meta-left {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  align-items: center;
-}
-.meta-bar span.category { color: #4a90e2; font-weight: 600; }
-.meta-bar span.sep { color: #33395c; }
-
-h1 {
-  font-size: 1.7em;
-  color: #fff;
-  margin-bottom: 12px;
-  font-weight: 700;
-}
-
-.subtitle {
-  color: #7a8296;
-  margin-bottom: 44px;
-  font-size: 0.95em;
-}
-
-/* ---- Structure arborescente (utilisée par index.html) ---- */
-
-.children {
-  margin-left: 20px;
-  padding-left: 16px;
-  border-left: 1px solid #232849;
-}
-
-.child {
-  padding: 6px 0;
-  font-size: 0.92em;
-}
-
+/* .child sans <a> (pas encore de sous-page) : même teinte que
+   .child a pour rester visuellement identique au pattern du groupe. */
 .child-title {
   color: #b8bcd8;
-}
-
-.child-desc {
-  color: #5a6080;
-  font-size: 0.85em;
-  margin-top: 3px;
 }
 
 .child-desc .fn {
   font-style: italic;
 }
 
-.status-tag {
-  display: inline-block;
-  font-size: 0.72em;
-  padding: 1px 7px;
-  border-radius: 3px;
-  margin-left: 8px;
-  font-family: 'SF Mono', Consolas, monospace;
-}
-.status-live { background: #16311f; color: #6bcf7f; }
-.status-draft { background: #332412; color: #e0a94a; }
-.status-planned { background: #241832; color: #a888d0; }
-.status-ready { background: #0d2b33; color: #4ac8e0; }
-
-/* ---- Proof Mark⧉ — remplace ™/©/® (doctrine Post-TM, v1.1) ----
+/* Proof Mark⧉ — remplace ™/©/® (doctrine Post-TM, v1.1) ----
    0.6em, superscript, graisse régulière — jamais bold. */
 .proof-mark {
   font-size: 0.6em;
