@@ -1,0 +1,41 @@
+name: Sync "Updated" timestamp
+
+# Keeps the "Updated" field in index.html in sync with the exact date/time
+# of the last human commit on main. Runs after every push, rewrites the
+# <span id="updated-ts"> content, and pushes that as a follow-up commit.
+# Guarded by `if: github.actor != 'github-actions[bot]'` so that follow-up
+# commit doesn't retrigger itself.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sync-timestamp:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute last commit timestamp
+        run: |
+          echo "TS=$(git log -1 --date=format:'%B %d, %Y, %H:%M' --format=%cd)" >> "$GITHUB_ENV"
+
+      - name: Update index.html
+        run: |
+          perl -pi -e 's#(<span id="updated-ts">).*?(</span>)#$1$ENV{TS}$2#' index.html
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet index.html; then
+            git add index.html
+            git commit -m "chore: sync Updated timestamp to $TS"
+            git push
+          fi
