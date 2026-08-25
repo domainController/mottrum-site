@@ -32,6 +32,12 @@
   vertical-align: super;
 }
 
+/* Resserre l'interligne h1 → subtitle : le line-height 1.7 hérité du
+   body ajoute un grand leading au h1, indépendamment de son margin-bottom. */
+h1 {
+  line-height: 1.2;
+}
+
 footer {
   margin-top: 48px;
   padding-top: 18px;
@@ -56,7 +62,7 @@ footer {
     <div class="children">
       <div class="child">
         <span class="child-title">Proof Engine<span class="proof-mark">⧉</span></span> <span class="status-tag status-draft">draft</span>
-        <div class="child-desc">Notarizes the evidence. <span class="fn">function: transformation / notarization</span></div>
+        <div class="child-desc">Notarizes the evidence. <span class="fn">function: transformation</span></div>
       </div>
 
       <div class="child">
@@ -66,12 +72,12 @@ footer {
 
       <div class="child">
         <span class="child-title">Instrument Forge<span class="proof-mark">⧉</span></span> <span class="status-tag status-draft">draft</span>
-        <div class="child-desc">Designs legal instruments. <span class="fn">function: instruments — creation &amp; exploitation</span></div>
+        <div class="child-desc">Designs legal instruments. <span class="fn">function: creation &amp; exploitation</span></div>
       </div>
 
       <div class="child">
         <span class="child-title">Truth Finance Exchange<span class="proof-mark">⧉</span></span> <span class="status-tag status-draft">draft</span>
-        <div class="child-desc">Trades pre-litigation assets. <span class="fn">function: exchange</span></div>
+        <div class="child-desc">Trades pre-litigation assets.</div>
       </div>
     </div>
 
