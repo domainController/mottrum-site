@@ -7,8 +7,18 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Valeurs synchronisées avec offcityhike-blog/style.css (:root) —
+   ne pas dériver, recopier depuis la source si le blog change. */
+:root {
+  --ref-bg: #0a0e24;
+  --ref-subtitle: #8fa3c4;
+  --ref-text: #c7cbd6;
+  --ref-live-bg: rgba(99, 201, 140, 0.15);
+  --ref-live-text: #63c98c;
+}
+
 body {
-  background: #0a0e27;
+  background: var(--ref-bg);
   color: #e0e0e0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.7;
@@ -20,26 +30,21 @@ body {
   padding: 60px 24px;
 }
 
-/* ---- Meta bar / front-matter (visible en haut de chaque page) ----
-   Contient désormais deux zones : .meta-left (catégorie/version/date)
-   et .lang-switch (FR/EN/DE), sur la même ligne, alignées aux deux
-   extrémités. Sur petit écran, .lang-switch passe à la ligne suivante
-   grâce à flex-wrap. */
-
 .meta-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px 16px;
-  font-size: 0.82em;
+  font-size: clamp(0.82em, calc(0.766em + 0.015vw), 0.88em);
   color: #7a8296;
   border-bottom: 1px solid #1e2340;
   padding-bottom: 18px;
   margin-bottom: 40px;
   font-family: 'SF Mono', Consolas, monospace;
 }
-.meta-bar .meta-left {
+.meta-bar .meta-left,
+.meta-bar .meta-right {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 16px;
@@ -48,42 +53,35 @@ body {
 .meta-bar span.category { color: #4a90e2; font-weight: 600; }
 .meta-bar span.sep { color: #33395c; }
 
-/* ---- Titres et sous-titres ---- */
-
 h1 {
-  font-size: 1.7em;
+  font-size: clamp(1.7em, calc(1.5875em + 0.0312vw), 1.825em);
   color: #fff;
   margin-bottom: 12px;
   font-weight: 700;
 }
 
 h2 {
-  color: #fff;
-  font-size: 1.15em;
+  color: var(--ref-subtitle);
+  font-size: clamp(1.15em, calc(1.0735em + 0.0212vw), 1.235em);
+  font-weight: 500;
   margin: 36px 0 14px;
 }
 
 .subtitle {
   color: #7a8296;
   margin-bottom: 44px;
-  font-size: 0.95em;
+  font-size: clamp(0.95em, calc(0.887em + 0.0175vw), 1.02em);
 }
 
-/* ---- Exec Definition (bloc d'ouverture citable) ---- */
-
 .exec-def {
-  font-size: 1.1em;
+  font-size: clamp(1.1em, calc(1.028em + 0.02vw), 1.18em);
   color: #f0f0f5;
   border-left: 3px solid #4a90e2;
   padding-left: 20px;
   margin-bottom: 40px;
 }
 
-/* ---- Paragraphes de corps ---- */
-
-p { margin-bottom: 20px; color: #c8cce0; }
-
-/* ---- Concept blocks (utilisés dans Grounds/Genealogy/Stance/Mechanics) ---- */
+p { margin-bottom: 20px; color: var(--ref-text); }
 
 .concept {
   background: #10142e;
@@ -97,8 +95,6 @@ p { margin-bottom: 20px; color: #c8cce0; }
   margin-bottom: 6px;
 }
 
-/* ---- Summary box (résumé en trois phrases, fond vert) ---- */
-
 .summary-box {
   background: #16311f;
   border-radius: 6px;
@@ -109,8 +105,6 @@ p { margin-bottom: 20px; color: #c8cce0; }
 .summary-box p { color: #c8f0d0; margin-bottom: 10px; }
 .summary-box p:last-child { margin-bottom: 0; }
 
-/* ---- Structure arborescente (utilisée par index.html) ---- */
-
 .branch {
   margin-bottom: 8px;
   padding: 14px 0;
@@ -120,19 +114,13 @@ p { margin-bottom: 20px; color: #c8cce0; }
 
 .branch-title {
   color: #fff;
-  font-size: 1.05em;
+  font-size: clamp(1.05em, calc(0.978em + 0.02vw), 1.13em);
   font-weight: 600;
   margin-bottom: 4px;
 }
 .branch-title a { color: #fff; text-decoration: none; }
 .branch-title a:visited { color: #fff; }
 .branch-title a:hover { color: #4a90e2; }
-
-/* ---- Accordéon natif (<details>/<summary>), zéro JS ----
-   .branch-title est réutilisé comme <summary> : on masque le marqueur
-   natif et on le remplace par ▸, qui tourne à 90° quand le <details>
-   parent est ouvert. Imbrication possible : un <details> peut vivre
-   dans .children, avec son propre <summary class="branch-title">. */
 
 summary.branch-title {
   list-style: none;
@@ -155,7 +143,7 @@ details[open] > summary.branch-title::before {
 
 .branch-desc {
   color: #8a90a8;
-  font-size: 0.88em;
+  font-size: clamp(0.88em, calc(0.8215em + 0.0163vw), 0.945em);
   margin-bottom: 10px;
 }
 
@@ -167,30 +155,34 @@ details[open] > summary.branch-title::before {
 
 .child {
   padding: 6px 0;
-  font-size: 0.92em;
+  font-size: clamp(0.92em, calc(0.857em + 0.0175vw), 0.99em);
 }
 .child a { color: #b8bcd8; text-decoration: none; }
 .child a:visited { color: #b8bcd8; }
 .child a:hover { color: #4a90e2; text-decoration: underline; }
-.child .note { color: #5a6080; font-size: 0.85em; margin-left: 8px; }
-.child-desc { color: #5a6080; font-size: 0.85em; margin-top: 3px; }
-
-/* ---- Tags de statut (live / draft / planned) ---- */
+.child .note { color: #5a6080; font-size: clamp(0.85em, calc(0.7915em + 0.0163vw), 0.915em); margin-left: 8px; }
+.child-desc { color: #5a6080; font-size: clamp(0.85em, calc(0.7915em + 0.0163vw), 0.915em); margin-top: 3px; }
 
 .status-tag {
   display: inline-block;
-  font-size: 0.72em;
+  font-size: clamp(0.72em, calc(0.6705em + 0.0137vw), 0.775em);
   padding: 1px 7px;
   border-radius: 3px;
   margin-left: 8px;
   font-family: 'SF Mono', Consolas, monospace;
 }
-.status-live { background: #16311f; color: #6bcf7f; }
+.status-live { background: var(--ref-live-bg); color: var(--ref-live-text); }
 .status-draft { background: #332412; color: #e0a94a; }
 .status-planned { background: #241832; color: #a888d0; }
 .status-ready { background: #0d2b33; color: #4ac8e0; }
-
-/* ---- Liens internes — vers un concept du glossaire, même corpus ---- */
+.status-concept { background: #2a1a2e; color: #d47fc9; }
+.status-research { background: #16233d; color: #6bb3f0; }
+.status-project { background: #16233d; color: #6bb3f0; }
+.status-reference { background: #16233d; color: #6bb3f0; }
+.status-tentative { background: #241832; color: #a888d0; }
+.status-waiting { background: #16233d; color: #5a6080; }
+.status-shaping { background: #241832; color: #a888d0; }
+.status-polishing { background: #0d2b33; color: #4ac8e0; }
 
 a.link-internal {
   color: #a888d0;
@@ -199,8 +191,6 @@ a.link-internal {
 }
 a.link-internal:visited { color: #a888d0; }
 a.link-internal:hover { color: #c4aee8; border-bottom-style: solid; }
-
-/* ---- Liens externes — vers une source ou figure d'autorité extérieure ---- */
 
 a.link-external {
   color: #6bcf7f;
@@ -211,12 +201,8 @@ a.link-external:visited { color: #6bcf7f; }
 a.link-external:hover { color: #8fe89f; }
 a.link-external::after {
   content: " ↗";
-  font-size: 0.85em;
+  font-size: clamp(0.85em, calc(0.7915em + 0.0163vw), 0.915em);
 }
-
-/* ---- Sélecteur de langue — vit désormais À L'INTÉRIEUR du .meta-bar,
-   pas comme bloc séparé au-dessus. Pas de margin-bottom propre : c'est
-   le gap du flex parent (.meta-bar) qui gère l'espacement. ---- */
 
 .lang-switch {
   display: flex;
@@ -224,7 +210,7 @@ a.link-external::after {
   align-items: center;
 }
 .lang-switch a {
-  font-size: 0.78em;
+  font-size: clamp(0.78em, calc(0.726em + 0.015vw), 0.84em);
   font-family: 'SF Mono', Consolas, monospace;
   color: #7a8296;
   text-decoration: none;
@@ -235,23 +221,19 @@ a.link-external::after {
 .lang-switch a:hover { color: #4a90e2; border-color: #4a90e2; }
 .lang-switch a.active { color: #fff; background: #1e2340; border-color: #1e2340; }
 
-/* ---- Liens de navigation générique ---- */
-
 .back-link {
   display: inline-block;
   margin-top: 40px;
   color: #4a90e2;
   text-decoration: none;
-  font-size: 0.9em;
+  font-size: clamp(0.9em, calc(0.8415em + 0.0163vw), 0.965em);
 }
 .back-link:visited { color: #4a90e2; }
 .back-link:hover { text-decoration: underline; }
 
-/* ---- Front-matter block (pages Asset) — clé/valeur alignées ---- */
-
 .frontmatter {
   font-family: 'SF Mono', Consolas, monospace;
-  font-size: 0.85em;
+  font-size: clamp(0.85em, calc(0.7915em + 0.0163vw), 0.915em);
   margin-bottom: 40px;
 }
 .fm-row {
@@ -262,7 +244,7 @@ a.link-external::after {
   border-bottom: 1px solid #161a33;
 }
 .fm-key-col {
-  flex: 0 0 140px;
+  flex: 0 0 160px;
   text-align: right;
 }
 .fm-key {
@@ -280,10 +262,20 @@ a.link-external::after {
 }
 .fm-value a.link-internal { font-family: 'SF Mono', Consolas, monospace; }
 
-/* ---- Message des pages d'attente (destinations draft/planned/ready pas encore construites) ---- */
-
 .placeholder-message {
   color: #8a90a8;
-  font-size: 1.05em;
+  font-size: clamp(1.05em, calc(0.978em + 0.02vw), 1.13em);
   margin-top: 24px;
 }
+
+
+/* ---- Nav home icon + back-link (replaces bottom back-link + static "Portfolio" label) ---- */
+
+.home-icon { color: #7a8296; text-decoration: none; font-size: clamp(1.05em, calc(0.978em + 0.02vw), 1.13em); line-height: 1; }
+.home-icon:hover { color: #4a90e2; }
+.home-icon-active { color: #4a90e2; font-size: clamp(1.05em, calc(0.978em + 0.02vw), 1.13em); line-height: 1; }
+.nav-back { color: #4a90e2; text-decoration: none; }
+
+/* ---- Cross-site links (portfolio / blog / doctrine / ecosystem) ---- */
+.site-link { color: #4a90e2; text-decoration: none; }
+.site-link:hover { text-decoration: underline; }
